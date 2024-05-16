@@ -60,17 +60,6 @@
     <div class="box" id="4"></div>
   </div>
 
-  <label for="badLetterField">Illegal Letters</label><input id="badLetterField" type="text" readonly="readonly"/>
-  <div>
-    <input checked="checked" id="green" name="box_color" onclick="changeColor(this.value)" type="radio" value="green">
-    <label for="green">Correct</label>
-    <input id="yellow" name="box_color" onclick="changeColor(this.value)" type="radio" value="orange">
-    <label for="yellow">Wrong Spot</label>
-<!--    <input id="red" name="box_color" onclick="change_color(this.value)" type="radio"-->
-<!--           value="crimson">-->
-<!--    <label for="red">Illegal Letter</label>-->
-  </div>
-
   <div class="keyboard">
     <!--  courtesy of https://codepen.io/gschier/pen/VKgyaY-->
     <div class="keyboard__row">
@@ -135,7 +124,7 @@
       </div>
     </div> <br>
     <div class="keyboard__row">
-      <div class="key--special key--go" onclick=filterWords()>
+      <div class="key--special key--go" onclick=addToken()>
         <span>GO!</span>
       </div>
     </div>
