@@ -16,18 +16,16 @@ $(".item").draggable({
     revertDuration: 0 // immediate snap
 });
 
-  // Make drop box droppable
-  $('#drop-box').droppable({
-    accept: '.item',
+$(".box").droppable({
+    classes: {
+        "ui-droppable-hover": "ui-state-hover"
+    },
     drop: function(event, ui) {
-      var letter = $(ui.helper).clone();
-      letter.draggable({
-        containment: '#drop-box'
-      });
-      $(this).append(letter);
-      adjustDropBoxWidth();
-    }
-  });
+        const color = document.querySelector('input[name="box_color"]:checked').value;
+        $(this).append($(ui.draggable).clone());
+        let boxID = event.target.id;
+        document.getElementById(boxID).lastElementChild.setAttribute("data-color", color);
+    },
 });
 
 // Function to adjust the width of the drop box
