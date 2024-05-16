@@ -1,30 +1,28 @@
-$( ".box" ).droppable({
-    classes: {
-        "ui-droppable-hover": "ui-state-hover"
-    },
+$(function() {
+  // Make keyboard items draggable
+  $('.item').draggable({
+    helper: 'clone'
+  });
+
+  // Make drop box droppable
+  $('#drop-box').droppable({
+    accept: '.item',
     drop: function(event, ui) {
-        const color = document.querySelector('input[name="box_color"]:checked').value;
-        $(this).append($(ui.draggable).clone());
-        let boxID = event.target.id;
-        document.getElementById(boxID).lastElementChild.setAttribute("data-color", color);
-    },
+      var letter = $(ui.helper).clone();
+      letter.draggable({
+        containment: '#drop-box'
+      });
+      $(this).append(letter);
+      adjustDropBoxWidth();
+    }
+  });
 });
 
-$( ".item" ).draggable({
-    drag: function (event, ui) {
-        if ($(this).data('droppedin')) {
-            $(this).data('droppedin').droppable('enable');
-            $(this).data('droppedin', null)
-            $(this).removeClass('dropped')
-        }
-    },
-    snap: ".box",
-    snapMode: "inner",
-    helper: "clone", // create "copy" with original properties, but not a true clone
-    cursor: "move",
-    revert: "invalid",
-    revertDuration: 0 // immediate snap
-})
+// Function to adjust the width of the drop box
+function adjustDropBoxWidth() {
+  var itemCount = $('#drop-box .item').length;
+  $('#drop-box').css('width', itemCount * 30 + 'px'); // Adjust width as per your requirement
+}
 
 let infoModal = document.getElementById("info-modal");
 let infoButton = document.getElementById("info");
