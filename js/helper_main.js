@@ -10,7 +10,7 @@ $(".item").draggable({
     },
     snap: ".box",
     snapMode: "inner",
-    //helper: "clone", // create "copy" with original properties, but not a true clone
+    helper: "clone", // create "copy" with original properties, but not a true clone
     cursor: "move",
     revert: "invalid",
     revertDuration: 0 // immediate snap
