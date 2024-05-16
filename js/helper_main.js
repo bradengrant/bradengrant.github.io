@@ -1,8 +1,20 @@
 $(function() {
   // Make keyboard items draggable
-  $('.item').draggable({
-    helper: 'clone'
-  });
+$(".item").draggable({
+    drag: function (event, ui) {
+        if ($(this).data('droppedin')) {
+            $(this).data('droppedin').droppable('enable');
+            $(this).data('droppedin', null)
+            $(this).removeClass('dropped')
+        }
+    },
+    snap: ".box",
+    snapMode: "inner",
+    //helper: "clone", // create "copy" with original properties, but not a true clone
+    cursor: "move",
+    revert: "invalid",
+    revertDuration: 0 // immediate snap
+});
 
   // Make drop box droppable
   $('#drop-box').droppable({
