@@ -1,6 +1,16 @@
-$(function() {
-  // Make keyboard items draggable
-$(".item").draggable({
+$( ".box" ).droppable({
+    classes: {
+        "ui-droppable-hover": "ui-state-hover"
+    },
+    drop: function(event, ui) {
+        const color = document.querySelector('input[name="box_color"]:checked').value;
+        $(this).append($(ui.draggable).clone());
+        let boxID = event.target.id;
+        document.getElementById(boxID).lastElementChild.setAttribute("data-color", color);
+    },
+});
+
+$( ".item" ).draggable({
     drag: function (event, ui) {
         if ($(this).data('droppedin')) {
             $(this).data('droppedin').droppable('enable');
@@ -14,19 +24,7 @@ $(".item").draggable({
     cursor: "move",
     revert: "invalid",
     revertDuration: 0 // immediate snap
-});
-
-$(".box").droppable({
-    classes: {
-        "ui-droppable-hover": "ui-state-hover"
-    },
-    drop: function(event, ui) {
-        const color = document.querySelector('input[name="box_color"]:checked').value;
-        $(this).append($(ui.draggable).clone());
-        let boxID = event.target.id;
-        document.getElementById(boxID).lastElementChild.setAttribute("data-color", color);
-    },
-});
+})
 
 // Function to adjust the width of the drop box
 function adjustDropBoxWidth() {
